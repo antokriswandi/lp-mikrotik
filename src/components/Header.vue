@@ -15,7 +15,7 @@
                     <div class="text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900">
                         <h1>Siap Menjadi</h1>
                         <!-- Gunakan komponen Typewriter -->
-                        <h1 class="text-rose-800"><VueWriter :array="['IT Support', 'Network Admin', 'System Admin', 'Cybersecurity Analyst', 'Cloud Engineer']" :typeSpeed="100" :eraseSpeed="50" /></h1>
+                        <h1 class="text-rose-800"><VueWriter :array="jobProspects" :typeSpeed="100" :eraseSpeed="50" /></h1>
                     </div>
                 </div>
                 <!-- deskripsi -->
@@ -66,7 +66,8 @@ export default {
             "Network Admin",
             "System Admin",
             "Cybersecurity Analyst",
-            "Cloud Engineer"
+            "Cloud Engineer",
+            "Network Operations"
         ]);
 
         return {

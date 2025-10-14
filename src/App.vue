@@ -4,6 +4,7 @@ import Navigasi from './components/Navigasi.vue'; // Sesuaikan path jika struktu
 import Header from './components/Header.vue';
 import CardMateri from './components/CardMateri.vue'; // Impor komponen CardMateri
 import GlowBackground from './components/GlowBackground.vue'; // Impor komponen GlowBackground
+import { ref } from 'vue';
 
 export default {
   name: 'App',
@@ -14,6 +15,31 @@ export default {
     CardMateri, // Daftarkan komponen CardMateri
     GlowBackground, // Daftarkan komponen GlowBackground
   },
+
+  setup() {
+    const isOpen = ref(false);
+    const currentImage = ref('');
+
+    const openModal = (imageSrc) => {
+      currentImage.value = imageSrc;
+      isOpen.value = true;
+    };
+
+    const closeModal = () => {
+      isOpen.value = false;
+    };
+
+    return {
+      // ... (return lainnya seperti cardData, dsb)
+
+      // --- Tambahkan bagian ini ke return ---
+      isOpen,
+      currentImage,
+      openModal,
+      closeModal,
+      // --- Akhir tambahan ---
+    };
+  }
 }
 </script>
 
@@ -247,51 +273,69 @@ export default {
       <!-- daftar trainer -->
       <div class="grid grid-cols-4 lg:grid-cols-8 xl:grid-cols-12 gap-4 lg:gap-8">
         <!-- trainer 1 -->
-        <div class="col-span-4 xl:col-start-3">
+        <div
+          class="col-span-4 xl:col-start-3 group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-4xl">
           <div class="flex items-center">
             <img src="/img/ii.jpg" alt="Ii Nurholiq, S.Kom."
               class="w-[160px] h-[240px] rounded-tl-4xl rounded-bl-4xl object-cover">
             <div
-              class="flex flex-col p-4 lg:py-8 gap-4 h-[240px] justify-between bg-white rounded-tr-4xl rounded-br-4xl">
+              class="flex flex-col w-full p-4 lg:py-8 gap-4 h-[240px] justify-between bg-white rounded-tr-4xl rounded-br-4xl">
               <div class="space-y-2">
                 <p class="text-body text-slate-900 font-semibold">Ii Nurholiq, S.Kom.</p>
                 <p class="text-sm text-slate-600">Guru Produktif <br>
-                  <a href="https://smkmuh2-kuningan.sch.id/jurusan/TJKT" target="_blank" class="text-rose-800 underline">Teknik Jaringan Komputer dan Telekomunikasi</a>
+                  <a href="https://smkmuh2-kuningan.sch.id/jurusan/TJKT" target="_blank"
+                    class="text-rose-800 underline">Teknik Jaringan Komputer dan Telekomunikasi</a>
                 </p>
               </div>
               <div class="flex gap-2">
-                <img src="https://placehold.co/48x68" alt=""
-                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200">
-                <img src="https://placehold.co/48x68" alt=""
-                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200">
+                <img @click="openModal('/img/serfifikat_mikrotik_ii_nurholiq_1.jpg')" src="/img/serfifikat_mikrotik_ii_nurholiq_1.jpg" alt=""
+                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200 group-hover:animate-pulse group-hover:border group-hover:border-teal-700 cursor-pointer">
               </div>
             </div>
           </div>
         </div>
-        <!-- trainer 1 -->
-        <div class="col-span-4">
+        <!-- trainer 2 -->
+        <div class="col-span-4 group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-4xl">
           <div class="flex items-center">
             <img src="/img/imas.jpg" alt="Ii Nurholiq, S.Kom."
               class="w-[160px] h-[240px] rounded-tl-4xl rounded-bl-4xl object-cover">
             <div
-              class="flex flex-col p-4 lg:py-8 gap-4 h-[240px] justify-between bg-white rounded-tr-4xl rounded-br-4xl">
+              class="flex flex-col w-full p-4 lg:py-8 gap-4 h-[240px] justify-between bg-white rounded-tr-4xl rounded-br-4xl">
               <div class="space-y-2">
                 <p class="text-body text-slate-900 font-semibold">Imas Siti Maryam, S.Kom.</p>
                 <p class="text-sm text-slate-600">Guru Produktif <br>
-                  <a href="https://smkmuh2-kuningan.sch.id/jurusan/TJKT" target="_blank" class="text-rose-800 underline">Teknik Jaringan Komputer dan Telekomunikasi</a>
+                  <a href="https://smkmuh2-kuningan.sch.id/jurusan/TJKT" target="_blank"
+                    class="text-rose-800 underline">Teknik Jaringan Komputer dan Telekomunikasi</a>
                 </p>
               </div>
               <div class="flex gap-2">
-                <img src="https://placehold.co/48x68" alt=""
-                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200">
-                <img src="https://placehold.co/48x68" alt=""
-                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200">
+                <img @click="openModal('/img/sertifikat_mikrotik_imas_siti_maryam_1.jpg')" src="/img/sertifikat_mikrotik_imas_siti_maryam_1.jpg" alt=""
+                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200 group-hover:animate-pulse group-hover:border group-hover:border-teal-700 cursor-pointer">
+                <img @click="openModal('/img/sertifikat_mikrotik_imas_siti_maryam_2.jpg')" src="/img/sertifikat_mikrotik_imas_siti_maryam_2.jpg" alt=""
+                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200 group-hover:animate-pulse group-hover:border group-hover:border-teal-700 cursor-pointer">
+                <img @click="openModal('/img/sertifikat_mikrotik_imas_siti_maryam_3.jpg')" src="/img/sertifikat_mikrotik_imas_siti_maryam_3.jpg" alt=""
+                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200 group-hover:animate-pulse group-hover:border group-hover:border-teal-700 cursor-pointer">
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- MODAL SERTIFIKAT TRAINER -->
+    <!-- Modal untuk menampilkan sertifikat -->
+    <div v-show="isOpen"
+      class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 transition-opacity duration-300"
+      @click="closeModal"> <!-- Klik latar belakang untuk menutup -->
+      <div class="relative max-w-4xl max-h-[90vh] w-full">
+        <button @click="closeModal"
+          class="absolute -top-10 right-0 text-white text-2xl hover:text-gray-300 focus:outline-none">
+          &times;
+        </button>
+        <img :src="currentImage" alt="Sertifikat Besar"
+          class="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-xl">
+      </div>
+    </div>
 
     <!-- DONWLOAD PAGE -->
     <section class="container mx-auto px-4 py-8 xl:px-8 xl:py-16 space-y-4 lg:space-y-8">
@@ -301,7 +345,7 @@ export default {
         </div>
         <div class="space-y-4 text-center">
           <h2 class="text-slate-900 text-2xl font-bold">Brosur Mikrotik Academy</h2>
-          <a href="https://smkmuh2-kuningan.sch.id    "
+          <a href="/file/MikroTikAcademy_EN.pdf" download="/file/MikroTikAcademy_EN.pdf"
             class="group flex justify-center items-center gap-2 px-6 py-3 bg-teal-700 text-white rounded-full font-bold transition-all duration-300 ease-in-out hover:bg-teal-800 hover:scale-105">
             <span class="transition-transform duration-300 ease-in-out group-hover:translate-x-1">Unduh</span>
             <svg class="w-[24px] h-[24px] transition-transform duration-300 ease-in-out group-hover:translate-x-2"
@@ -344,16 +388,17 @@ export default {
               Ikuti Kami:
             </p>
             <div class="space-y-2 text-slate-600 text-body">
-              <a href="#" class="block hover:underline">WhatsApp</a>
-              <a href="#" class="block hover:underline">Instagram</a>
-              <a href="#" class="block hover:underline">Tiktok</a>
-              <a href="#" class="block hover:underline">Youtube</a>
+              <a href="https://wa.link/1jfz6r" target="_blank" class="block hover:underline">WhatsApp</a>
+              <a href="https://www.instagram.com/smkm2kng/" target="_blank" class="block hover:underline">Instagram</a>
+              <a href="https://www.tiktok.com/@dosq_28" target="_blank" class="block hover:underline">Tiktok</a>
+              <a href="https://www.youtube.com/@smkmuhammadiyah2kuningan695" target="_blank" class="block hover:underline">Youtube</a>
             </div>
           </div>
         </div>
 
-        <div class="col-span-4 lg:col-span-8 xl:col-span-12 border-t border-slate-200 pt-4 text-center">
+        <div class="col-span-4 lg:col-span-8 xl:col-span-12 border-t border-slate-200 pt-4 text-center space-y-2">
           <p class="text-sm text-slate-600">&copy; 2025 SMK Muhammadiyah 2 Kuningan. All rights reserved.</p>
+          <p class="text-xs text-slate-400">Halaman ini dikembangkan oleh Kompetensi Keahlian <a href="https://smkmuh2-kuningan.sch.id/jurusan/PPLG" target="_blank" class="underline">Pengembangan Perangkat Lunak dan Gim (PPLG)</a></p>
         </div>
       </div>
     </footer>

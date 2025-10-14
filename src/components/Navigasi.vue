@@ -4,18 +4,18 @@
             <!-- Baris Navigasi -->
             <div class="flex justify-between items-center">
                 <!-- Kolom 1: Logo dan Nama -->
-                <div class="flex items-center space-x-3">
+                <a href="https://smkmuh2-kuningan.sch.id" class="flex items-center space-x-3" target="_blank">
                     <img src="/img/logo.png" alt="Logo SMK" class="w-10 h-10 object-contain">
                     <span class="text-lg font-semibold text-gray-800">SMKMuh 2 Kuningan</span>
-                </div>
+                </a>
 
                 <!-- Kolom 2: Tampilan Mobile -->
                 <div class="md:hidden flex items-center">
                     <!-- Gunakan @click dari Vue untuk memicu fungsi toggle -->
                     <button @click="toggleMenu"
                         class="w-10 h-10 flex items-center justify-center rounded-md text-slate-700 focus:outline-none">
-                        <svg class="w-6 h-6" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M18 6H6m12 4H6m12 4H6m12 4H6" />
                         </svg>
@@ -64,14 +64,14 @@
                 </button>
             </div>
             <div class="flex-1 flex flex-col p-4 space-y-6 items-center">
-                <!-- Tambahkan @click untuk menutup menu saat item diklik -->
-                <a href="#" @click.prevent="closeMenuAndNavigate('#')"
+                <!-- Ganti @click.prevent dengan @click -->
+                <a href="#" @click="closeMenuAndNavigate('#')"
                     class="text-lg font-medium text-gray-800 hover:text-rose-700">Beranda</a>
-                <a href="#layanan" @click.prevent="closeMenuAndNavigate('#layanan')"
+                <a href="#layanan" @click="closeMenuAndNavigate('#layanan')"
                     class="text-lg font-medium text-gray-800 hover:text-rose-700">Layanan</a>
-                <a href="#materi" @click.prevent="closeMenuAndNavigate('#materi')"
+                <a href="#materi" @click="closeMenuAndNavigate('#materi')"
                     class="text-lg font-medium text-gray-800 hover:text-rose-700">Materi</a>
-                <a href="#trainer" @click.prevent="closeMenuAndNavigate('#trainer')"
+                <a href="#trainer" @click="closeMenuAndNavigate('#trainer')"
                     class="text-lg font-medium text-gray-800 hover:text-rose-700">Trainer</a>
             </div>
         </div>
@@ -98,10 +98,37 @@ export default {
             isOpen.value = false;
         };
 
-        // Fungsi untuk menutup menu dan menavigasi (opsional)
+        // Fungsi untuk menutup menu dan menavigasi (sudah diperbaiki)
         const closeMenuAndNavigate = (url) => {
-            console.log('Navigasi ke:', url);
-            closeMenu(); // Tutup menu setelah klik
+            // 1. Tutup menu dulu
+            closeMenu();
+
+            // 2. Tunggu sebentar agar animasi menu selesai sebelum scroll (opsional tapi bisa membantu)
+            // Kita gunakan nextTick Vue untuk memastikan DOM sudah diperbarui (termasuk penutupan menu)
+            // atau setTimeout sederhana.
+            // setTimeout bekerja langsung di sini karena closeMenu mengubah state, dan DOM update bisa segera terjadi.
+            setTimeout(() => {
+                // 3. Lakukan scroll ke target
+                // Jika url adalah '#' (beranda), kita bisa scroll ke atas
+                if (url === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    // Jika url adalah anchor link (misalnya #layanan)
+                    const targetElement = document.querySelector(url);
+                    if (targetElement) {
+                        // Gunakan scrollIntoView untuk scroll halus ke elemen target
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        // Atau, jika kamu ingin menggunakan hash untuk URL (ini biasanya dilakukan browser secara default)
+                        // window.location.hash = url; // Ini juga akan mencoba scroll dan mengubah URL
+                        // scrollIntoView lebih andal untuk scroll, window.location.hash bisa mengubah URL
+                        // Kita gunakan scrollIntoView karena fokusnya adalah scroll.
+                    } else {
+                        console.error(`Elemen dengan ID/Name '${url}' tidak ditemukan.`);
+                    }
+                }
+            }, 50); // Tunggu 50ms setelah state berubah agar animasi menu mulai berjalan
+            // Durasi ini bisa disesuaikan dengan durasi transisi menu (300ms di contoh ini),
+            // tetapi 50ms seringkali cukup untuk memastikan DOM sudah bereaksi sebelum scroll.
         };
 
         // Kembalikan state dan fungsi agar bisa digunakan di template
