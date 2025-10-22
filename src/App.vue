@@ -276,7 +276,7 @@ export default {
         <div
           class="col-span-4 xl:col-start-3 group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-4xl">
           <div class="flex items-center">
-            <img src="/img/ii.jpg" alt="Ii Nurholiq, S.Kom."
+            <img src="/img/Ii_Nurholiq.png" alt="Ii Nurholiq, S.Kom."
               class="w-[160px] h-[240px] rounded-tl-4xl rounded-bl-4xl object-cover">
             <div
               class="flex flex-col w-full p-4 lg:py-8 gap-4 h-[240px] justify-between bg-white rounded-tr-4xl rounded-br-4xl">
@@ -290,6 +290,8 @@ export default {
               <div class="flex gap-2">
                 <img @click="openModal('/img/serfifikat_mikrotik_ii_nurholiq_1.jpg')" src="/img/serfifikat_mikrotik_ii_nurholiq_1.jpg" alt=""
                   class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200 group-hover:animate-pulse group-hover:border group-hover:border-teal-700 cursor-pointer">
+                <img @click="openModal('/img/serfifikat_mikrotik_ii_nurholiq_2.jpg')" src="/img/serfifikat_mikrotik_ii_nurholiq_2.jpg" alt=""
+                  class="w-[48px] h-[68px] object-cover rounded-lg border border-slate-200 group-hover:animate-pulse group-hover:border group-hover:border-teal-700 cursor-pointer">
               </div>
             </div>
           </div>
@@ -297,7 +299,7 @@ export default {
         <!-- trainer 2 -->
         <div class="col-span-4 group hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-4xl">
           <div class="flex items-center">
-            <img src="/img/imas.jpg" alt="Ii Nurholiq, S.Kom."
+            <img src="/img/Imas_Siti_Maryam.png" alt="Imas Siti Maryam, S.Kom."
               class="w-[160px] h-[240px] rounded-tl-4xl rounded-bl-4xl object-cover">
             <div
               class="flex flex-col w-full p-4 lg:py-8 gap-4 h-[240px] justify-between bg-white rounded-tr-4xl rounded-br-4xl">
